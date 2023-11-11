@@ -1,3 +1,6 @@
+# files to ignore
+*.ignore.*
+
 # Prerequisites
 *.d
 
