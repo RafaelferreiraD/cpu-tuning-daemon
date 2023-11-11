@@ -13,3 +13,16 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
+#include <stdio.h>
+
+#ifndef READLINE_H
+#define DEADLINE_H
+typedef struct str_t
+{
+    size_t size;
+    char *str;
+} str_t;
+
+str_t *readline(FILE *file);
+
+#endif

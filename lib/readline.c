@@ -13,3 +13,40 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
+
+#include "readline.h"
+
+str_t *readline(FILE *file)
+{
+    str_t *str = malloc(sizeof(str_t));
+    const size_t buffersize = 8; // update this valuere later
+
+    if (str == NULL)
+    {
+        return str;
+    }
+
+    *str = (str_t){NULL, 0};
+
+    str->size = getline(&str->str, &buffersize, file);
+
+    if (str->size == 0)
+    {
+        str->str = NULL;
+        return str;
+    }
+    str->str[str->size - 1] = '\0';
+
+    char *tmp = realloc(str->str, str->size);
+    if (tmp == NULL)
+    {
+        free(str->str);
+        str->size = 0;
+        str->str = NULL;
+        return str;
+    }
+    str->str = tmp;
+    str->size--;
+    tmp = NULL;
+    return str;
+};
