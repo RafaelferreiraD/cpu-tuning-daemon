@@ -15,7 +15,12 @@ mkdirs:
 	@[ -d $(o) ] || mkdir $(o)
 	@[ -d $(o)/lib ] || mkdir $(o)/lib
 
-build: mkdirs $o/build.elf
+test:
+	@echo -e "\033[32m\tRunning unit tests\033[m"
+	@$(MAKE) -C tests
+	@echo -e "\033[32m\tDone!\033[m"
+
+build: test mkdirs $o/build.elf
 
 $o/build.elf: $o/main.o $o/lib/readline.o
 	$(CC) -o $@ $^ $(CFLAGS)
