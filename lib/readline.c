@@ -14,6 +14,7 @@
    limitations under the License.
 */
 
+#include <stdlib.h>
 #include "readline.h"
 
 str_t *readline(FILE *file)
