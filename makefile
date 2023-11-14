@@ -1,18 +1,24 @@
 override CC ?= gcc
 override CFLAGS += -Wall -Wextra
-o = out
+o := out
 
 all: build
 
 clean:
 	rm $(o)/*.o
 	rm $(o)/*.elf
+	rm $(o)/lib/*.o
 	rmdir $(o)/lib
 	rmdir $(o)
 
 mkdirs: 
 	@[ -d $(o) ] || mkdir $(o)
 	@[ -d $(o)/lib ] || mkdir $(o)/lib
+
+test:
+	@echo -e "\033[32m\tRunning unit tests\033[m"
+	@$(MAKE) -C tests
+	@echo -e "\033[32m\tDone!\033[m"
 
 build: mkdirs $o/build.elf
 
