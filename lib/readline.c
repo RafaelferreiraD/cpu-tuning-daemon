@@ -17,9 +17,10 @@
 #include <stdlib.h>
 #include "readline.h"
 
-str_t *readline(FILE *file)
+char *readline(FILE *file)
 {
-    str_t *str = malloc(sizeof(str_t));
+    char *str = malloc(sizeof(char));
+    size_t strsize = 0;
     const size_t buffersize = 8; // update this valuere later
 
     if (str == NULL)
@@ -27,27 +28,25 @@ str_t *readline(FILE *file)
         return str;
     }
 
-    *str = (str_t){NULL, 0};
+    strsize = getline(&str, &buffersize, file);
 
-    str->size = getline(&str->str, &buffersize, file);
-
-    if (str->size == 0)
+    if (strsize == -1)
     {
-        str->str = NULL;
+        free(str);
+        str = NULL;
         return str;
     }
-    str->str[str->size - 1] = '\0';
+    str[strsize - 1] = '\0';
 
-    char *tmp = realloc(str->str, str->size);
+    char *tmp = realloc(str, strsize);
     if (tmp == NULL)
     {
-        free(str->str);
-        str->size = 0;
-        str->str = NULL;
+        free(str);
+        str = NULL;
         return str;
     }
-    str->str = tmp;
-    str->size--;
+    str = tmp;
+    strsize--;
     tmp = NULL;
     return str;
 };

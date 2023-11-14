@@ -17,12 +17,7 @@
 
 #ifndef READLINE_H
 #define DEADLINE_H
-typedef struct str_t
-{
-    size_t size;
-    char *str;
-} str_t;
 
-str_t *readline(FILE *file);
+char *readline(FILE *file);
 
 #endif
