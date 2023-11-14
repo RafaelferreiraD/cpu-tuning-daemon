@@ -1,6 +1,6 @@
 override CC ?= gcc
 override CFLAGS += -Wall -Wextra
-o = out
+o := out
 
 all: build
 
