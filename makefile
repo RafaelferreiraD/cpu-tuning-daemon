@@ -19,8 +19,8 @@ build: mkdirs $o/build.elf
 $o/build.elf: $o/main.o $o/lib/readline.o
 	$(CC) -o $@ $^ $(CFLAGS)
 
-$o/main.o:
-	$(CC) -c main.c -o $@ $(CFLAGS)
+$o/main.o: main.c
+	$(CC) -c $< -o $@ $(CFLAGS)
 
-$o/lib/readline.o:
-	$(CC) -c lib/readline.c -o $@ $(CFLAGS)
+$o/lib/readline.o: lib/readline.c
+	$(CC) -c $< -o $@ $(CFLAGS)
