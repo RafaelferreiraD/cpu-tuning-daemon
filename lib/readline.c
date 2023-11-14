@@ -20,7 +20,7 @@
 char *readline(FILE *file)
 {
     char *str = malloc(sizeof(char));
-    size_t strsize = 0;
+    int strsize = 0;
     const size_t buffersize = 8; // update this valuere later
 
     if (str == NULL)
