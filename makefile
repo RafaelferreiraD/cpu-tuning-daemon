@@ -20,7 +20,7 @@ test:
 	@$(MAKE) -C tests
 	@echo -e "\033[32m\tDone!\033[m"
 
-build: test mkdirs $o/build.elf
+build: mkdirs $o/build.elf
 
 $o/build.elf: $o/main.o $o/lib/readline.o
 	$(CC) -o $@ $^ $(CFLAGS)
