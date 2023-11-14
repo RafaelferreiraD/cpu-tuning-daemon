@@ -7,6 +7,7 @@ all: build
 clean:
 	rm $(o)/*.o
 	rm $(o)/*.elf
+	rm $(o)/lib/*.o
 	rmdir $(o)/lib
 	rmdir $(o)
 
